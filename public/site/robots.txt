@@ -1,0 +1,20 @@
+# robots.txt — Intserfin
+User-agent: *
+Allow: /
+
+# Bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Bloquear bots que no respetan directivas
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://intserfin.com.co/sitemap.xml

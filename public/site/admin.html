@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+
+<!-- ════════ SECURITY (meta http-equiv fallback; HSTS/XFO requieren cabeceras HTTP) ════════ -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://wa.me; frame-ancestors 'self'; form-action 'self' https://wa.me; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Panel del administrador · Intserfin</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --primary:#1769A6; --primary-deep:#0F4C79; --primary-ink:#122436;
+  --accent:#1769A6; --accent-deep:#0F4C79;
+  --danger:#DC2626; --success:#16A34A;
+  --cream:#F5F5F5; --cream-2:#ECECEC; --surface:#122436;
+  --text:#1E2D3C; --text-2:#3A4B5C; --text-3:#5E6C7A;
+  --radius:18px; --radius-lg:28px; --radius-pill:999px;
+  --shadow-lg:0 18px 48px -24px rgba(43,44,46,.34);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Ubuntu',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--cream);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100dvh;
+  display:flex;flex-direction:column;
+}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;color:var(--primary-ink)}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+
+/* Topbar */
+.atop{
+  background:#fff;border-bottom:1px solid var(--cream-2);
+  padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.atop .brand{display:flex;align-items:center;gap:12px}
+.atop .brand img{height:42px;width:auto;display:block}
+.atop .back{
+  font-size:14px;font-weight:600;color:var(--text-2);
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border-radius:var(--radius-pill);
+  border:1.5px solid var(--cream-2);background:#fff;text-decoration:none;
+  transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease);
+}
+.atop .back:hover{border-color:var(--accent);color:var(--primary-deep);background:rgba(23,105,166,.06)}
+
+/* Layout */
+.awrap{width:100%;max-width:1040px;margin:0 auto;padding:40px 24px 60px;flex:1}
+
+.badge{
+  display:inline-block;font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--primary-deep);background:rgba(23,105,166,.12);
+  padding:6px 13px;border-radius:var(--radius-pill);margin-bottom:14px;
+}
+
+/* Login card */
+.card{
+  background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+}
+.login{max-width:420px;margin:6vh auto 0;padding:38px 34px}
+.login h1{font-size:1.6rem}
+.login .sub{font-size:14px;color:var(--text-3);margin-top:6px;margin-bottom:24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:6px}
+.field input{
+  width:100%;padding:13px 16px;border-radius:14px;
+  border:1.5px solid #e2e2e2;background:var(--cream);
+  font-family:inherit;font-size:15px;color:var(--text);min-height:48px;
+  transition:border .2s var(--ease),box-shadow .2s var(--ease);
+}
+.field input:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 4px rgba(23,105,166,.15);background:#fff}
+.error{color:var(--danger);font-size:13px;margin:2px 0 12px;font-weight:600}
+.btn-accent{
+  display:inline-flex;align-items:center;justify-content:center;gap:11px;width:100%;
+  background:var(--accent);color:#fff;font-weight:600;font-size:16px;
+  border:0;border-radius:var(--radius-pill);padding:15px 24px;min-height:54px;margin-top:8px;
+  transition:background .2s var(--ease);
+}
+.btn-accent:hover{background:var(--accent-deep)}
+
+/* Dashboard */
+.dashhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.dashhead h1{font-size:1.7rem}
+.count{
+  display:inline-grid;place-items:center;min-width:30px;height:26px;padding:0 9px;
+  background:var(--accent);color:#fff;border-radius:var(--radius-pill);
+  font-size:14px;margin-left:8px;vertical-align:middle;
+}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.abtn{
+  font-family:inherit;font-size:13.5px;font-weight:600;
+  padding:10px 16px;border-radius:var(--radius-pill);
+  border:1.5px solid var(--cream-2);background:#fff;color:var(--text-2);
+  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease);
+}
+.abtn:hover{border-color:var(--accent);color:var(--primary-deep);background:rgba(23,105,166,.06)}
+.abtn.danger:hover{border-color:var(--danger);color:var(--danger);background:rgba(220,38,38,.06)}
+.note{font-size:12.5px;color:var(--text-3);margin:8px 0 22px;line-height:1.5}
+.tablewrap{background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:720px}
+th,td{padding:13px 15px;text-align:left;white-space:nowrap}
+thead th{
+  background:var(--cream);color:var(--text-2);font-weight:600;
+  font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0;
+}
+tbody tr{border-top:1px solid var(--cream-2)}
+tbody tr:nth-child(even){background:#fafafa}
+td{color:var(--text-2)}
+.empty{text-align:center;color:var(--text-3);font-size:14px;padding:40px 14px}
+.hidden{display:none}
+@media (max-width:560px){
+  .awrap{padding:26px 16px 44px}
+  .login{padding:30px 22px}
+}
+</style>
+</head>
+<body>
+
+<header class="atop">
+  <a class="brand" href="index.html" aria-label="Intserfin — inicio">
+    <img src="assets/logo-intserfin.png" alt="Intserfin" />
+  </a>
+  <a class="back" href="index.html">← Volver al sitio</a>
+</header>
+
+<main class="awrap">
+
+  <!-- Login -->
+  <section class="card login" id="loginCard">
+    <span class="badge">Acceso restringido</span>
+    <h1>Panel del administrador</h1>
+    <p class="sub">Ingresa tus credenciales para ver las solicitudes recibidas.</p>
+    <form id="loginForm" autocomplete="on">
+      <div class="field">
+        <label for="user">Usuario</label>
+        <input id="user" name="username" type="text" autocomplete="username" placeholder="admin" />
+      </div>
+      <div class="field">
+        <label for="pass">Clave</label>
+        <input id="pass" name="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+      </div>
+      <p class="error hidden" id="error">Usuario o clave incorrectos.</p>
+      <button type="submit" class="btn-accent">Ingresar
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section class="dash hidden" id="dash">
+    <div class="dashhead">
+      <div>
+        <span class="badge">Solicitudes</span>
+        <h1>Leads recibidos <span id="count" class="count">0</span></h1>
+      </div>
+      <div class="actions">
+        <button type="button" class="abtn" id="refresh">Actualizar</button>
+        <button type="button" class="abtn" id="export">Exportar CSV</button>
+        <button type="button" class="abtn danger" id="clear">Vaciar</button>
+        <button type="button" class="abtn" id="logout">Salir</button>
+      </div>
+    </div>
+    <p class="note">Las solicitudes se guardan solo en este navegador (almacenamiento local) y no se sincronizan entre dispositivos.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Fecha</th><th>Nombre</th><th>Cédula</th><th>Celular</th><th>Perfil</th><th>Fondo</th><th>Monto</th><th>Docs</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="empty hidden" id="empty">Aún no hay solicitudes registradas en este navegador.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  /* ⚠️ Acceso solo del lado del navegador: NO es seguridad real.
+     Cambia estas credenciales por las tuyas. */
+  const ADMIN_USER = 'admin';
+  const ADMIN_PASS = 'intserfin2026';
+  const STORE_KEY  = 'intserfin_leads';
+  const AUTH_KEY   = 'intserfin_admin_ok';
+
+  const $ = s => document.querySelector(s);
+  const loginCard = $('#loginCard');
+  const loginForm = $('#loginForm');
+  const dash      = $('#dash');
+  const rows      = $('#rows');
+  const empty     = $('#empty');
+  const countEl   = $('#count');
+  const errEl     = $('#error');
+
+  const esc = s => String(s ?? '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+  const getLeads = () => { try { return JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(_){ return []; } };
+  const fmtDate = iso => { const d = new Date(iso); return isNaN(d) ? '—' : d.toLocaleString('es-CO',{dateStyle:'short',timeStyle:'short'}); };
+
+  function render(){
+    const leads = getLeads();
+    countEl.textContent = leads.length;
+    rows.innerHTML = leads.map(l => `<tr>
+      <td>${esc(fmtDate(l.fecha))}</td>
+      <td>${esc(l.nombre)}</td>
+      <td>${esc(l.cedula)}</td>
+      <td>${esc(l.celular)}</td>
+      <td>${esc(l.perfil)}</td>
+      <td>${esc(l.fondo)}</td>
+      <td>${esc(l.monto)}</td>
+      <td>${esc((l.archivos||[]).length)}</td>
+    </tr>`).join('');
+    empty.classList.toggle('hidden', leads.length > 0);
+  }
+  function showDash(){
+    loginCard.classList.add('hidden');
+    dash.classList.remove('hidden');
+    render();
+  }
+  function showLogin(){
+    dash.classList.add('hidden');
+    loginCard.classList.remove('hidden');
+    errEl.classList.add('hidden');
+    $('#user').focus();
+  }
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const u = $('#user').value.trim();
+    const p = $('#pass').value;
+    if (u === ADMIN_USER && p === ADMIN_PASS){
+      try { sessionStorage.setItem(AUTH_KEY,'1'); } catch(_){}
+      $('#pass').value = '';
+      showDash();
+    } else {
+      errEl.classList.remove('hidden');
+    }
+  });
+
+  $('#refresh').addEventListener('click', render);
+  $('#logout').addEventListener('click', () => {
+    try { sessionStorage.removeItem(AUTH_KEY); } catch(_){}
+    showLogin();
+  });
+  $('#clear').addEventListener('click', () => {
+    if (confirm('¿Vaciar todas las solicitudes guardadas en este navegador?')){
+      try { localStorage.removeItem(STORE_KEY); } catch(_){}
+      render();
+    }
+  });
+  $('#export').addEventListener('click', () => {
+    const leads = getLeads();
+    if (!leads.length){ alert('No hay solicitudes para exportar.'); return; }
+    const head = ['Fecha','Nombre','Cedula','Celular','Perfil','Fondo','Monto','Documentos'];
+    const csvCell = v => '"' + String(v ?? '').replace(/"/g,'""') + '"';
+    const lines = [head.join(',')].concat(leads.map(l => [
+      fmtDate(l.fecha), l.nombre, l.cedula, l.celular, l.perfil, l.fondo, l.monto, (l.archivos||[]).join(' | ')
+    ].map(csvCell).join(',')));
+    const blob = new Blob(['﻿' + lines.join('\r\n')], {type:'text/csv;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'solicitudes-intserfin-' + new Date().toISOString().slice(0,10) + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  // Si ya inició sesión en esta pestaña, ir directo al dashboard
+  if (sessionStorage.getItem(AUTH_KEY) === '1'){ showDash(); }
+  else { $('#user').focus(); }
+})();
+</script>
+</body>
+</html>

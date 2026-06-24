@@ -1,0 +1,33 @@
+{
+  "name": "Intserfin · Crédito de Libranza",
+  "short_name": "Intserfin",
+  "description": "Canal digital de asesoría gratuita en crédito de libranza para pensionados y docentes en Colombia.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1769A6",
+  "background_color": "#122436",
+  "categories": ["finance", "business"],
+  "icons": [
+    {
+      "src": "/assets/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

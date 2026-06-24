@@ -1,0 +1,4 @@
+project_id = "noekhdkovklwpfwrgkzk"
+
+[functions.upload-lead-doc]
+verify_jwt = false
