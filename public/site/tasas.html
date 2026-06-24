@@ -326,13 +326,6 @@ header.nav.scrolled .brand-logo{height:44px}
   transition:background .2s var(--ease);
 }
 .nav-cta:hover{background:var(--accent-deep)}
-.nav-admin{
-  font-weight:600;font-size:14.5px;color:var(--primary-deep);
-  padding:11px 22px;border-radius:var(--radius-pill);
-  border:1.5px solid rgba(23,105,166,.35);background:transparent;
-  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease);
-}
-.nav-admin:hover{background:rgba(23,105,166,.08);border-color:var(--accent);color:var(--accent-deep)}
 .nav-toggle{
   display:none;background:none;border:0;
   color:var(--primary-ink);font-size:26px;
@@ -386,7 +379,6 @@ header.nav.scrolled .brand-logo{height:44px}
 
 @media (max-width:900px){
   .nav-links{display:none}
-  .nav-admin{display:none}
   .nav-toggle{display:flex}
 }
 
@@ -1353,6 +1345,13 @@ footer ul a:hover{color:var(--accent-2)}
 .file-error{display:flex;align-items:center;gap:7px;color:var(--danger);font-size:12.5px;margin-top:8px}
 .file-ok{display:flex;align-items:center;gap:7px;color:var(--secondary-deep);font-size:12.5px;margin-top:8px;font-weight:600}
 
+/* Error states */
+.field.has-error input,.field.has-error select{border-color:var(--danger);box-shadow:0 0 0 4px rgba(220,38,38,.12);background:#fff}
+.field.has-error input:focus,.field.has-error select:focus{box-shadow:0 0 0 4px rgba(220,38,38,.2)}
+.field-error{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--danger);margin-top:5px;animation:errFade .25s var(--ease)}
+@keyframes errFade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.accepts.has-error label{color:var(--danger)}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    RESPONSIVE
    ────────────────────────────────────────────────────────────────────────── */
@@ -1607,8 +1606,7 @@ footer ul a:hover{color:var(--accent-2)}
         <span>© 2026 Intserfin. Todos los derechos reservados.</span>
         <span>
           <a href="privacidad.html">Política de privacidad</a> · <a href="datos-personales.html">Tratamiento de datos</a> ·
-          <a href="terminos.html">Términos y condiciones</a> ·
-          <a href="/admin-panel">Administrador</a>
+           <a href="terminos.html">Términos y condiciones</a>
         </span>
       </div>
     </div>
@@ -1961,38 +1959,100 @@ footer ul a:hover{color:var(--accent-2)}
   fileDrop.addEventListener('drop', e => { if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
 
   // ─── Form submit → WhatsApp ────────────────────────────────────────
+  function clearErrors(){
+    $$('.field.has-error').forEach(el => el.classList.remove('has-error'));
+    $$('.field-error').forEach(el => el.remove());
+  }
+
+  function showError(field, msg){
+    const wrapper = field.closest('.field') || field.parentElement;
+    wrapper.classList.add('has-error');
+    const existing = wrapper.querySelector('.field-error');
+    if (existing) existing.remove();
+    const err = document.createElement('div');
+    err.className = 'field-error';
+    err.setAttribute('role', 'alert');
+    err.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg> ' + msg;
+    wrapper.appendChild(err);
+  }
+
+  function validateField(field){
+    const val = field.value.trim();
+    const name = field.name || field.id;
+    const label = field.closest('.field')?.querySelector('label')?.textContent || name;
+    if (!val && field.required){
+      showError(field, (label || 'Este campo') + ' es obligatorio.');
+      return false;
+    }
+    if (name === 'nombre' && val.length < 3){
+      showError(field, 'El nombre debe tener al menos 3 caracteres.');
+      return false;
+    }
+    if (name === 'cedula' && !/^\d{6,12}$/.test(val)){
+      showError(field, 'La cédula debe tener entre 6 y 12 dígitos.');
+      return false;
+    }
+    if (name === 'celular' && !/^3\d{9}$/.test(val)){
+      showError(field, 'El celular debe ser un número colombiano válido (10 dígitos, ej. 3114880537).');
+      return false;
+    }
+    return true;
+  }
+
+  function addBlurValidation(){
+    $$('#studyForm input, #studyForm select').forEach(el => {
+      el.addEventListener('blur', function(){
+        const wrapper = this.closest('.field');
+        if (!wrapper) return;
+        const existing = wrapper.querySelector('.field-error');
+        if (existing) existing.remove();
+        wrapper.classList.remove('has-error');
+        if (this.value.trim()) validateField(this);
+      });
+      el.addEventListener('input', function(){
+        const wrapper = this.closest('.field');
+        if (!wrapper || !wrapper.classList.contains('has-error')) return;
+        const existing = wrapper.querySelector('.field-error');
+        if (existing) existing.remove();
+        wrapper.classList.remove('has-error');
+        if (this.value.trim()) validateField(this);
+      });
+    });
+  }
+  addBlurValidation();
+
   $('#studyForm').addEventListener('submit', async e => {
     e.preventDefault();
+    clearErrors();
     const f = e.target;
     const required = ['nombre','cedula','celular','perfil','fondo','monto'];
+    let valid = true;
     for (const k of required){
-      if (!f[k].value.trim()){
-        f[k].focus();
-        f[k].reportValidity?.();
-        return;
-      }
+      if (!validateField(f[k])){ valid = false; }
+    }
+    if (!valid){
+      const firstErr = $('#studyForm .has-error input, #studyForm .has-error select');
+      if (firstErr) firstErr.focus();
+      return;
     }
     if (!document.getElementById('acPriv').checked || !document.getElementById('acDatos').checked){
-      alert('Debes aceptar la Política de Privacidad y el Tratamiento de Datos para continuar.');
+      const accepts = document.querySelector('.accepts');
+      accepts.classList.add('has-error');
+      const existing = accepts.querySelector('.field-error');
+      if (!existing){
+        const err = document.createElement('div');
+        err.className = 'field-error';
+        err.style.marginTop = '4px';
+        err.setAttribute('role', 'alert');
+        err.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg> Debes aceptar la Política de Privacidad y el Tratamiento de Datos para continuar.';
+        accepts.appendChild(err);
+      }
+      const firstUnchecked = !document.getElementById('acPriv').checked ? document.getElementById('acPriv') : document.getElementById('acDatos');
+      firstUnchecked.focus();
       return;
     }
     const insolvencia = (f.insolvencia && f.insolvencia.value) || 'No';
     const elegible    = (f.elegible && f.elegible.value) || 'Sí';
-    // Guardar la solicitud localmente para el panel de administrador
-    try {
-      const leads = JSON.parse(localStorage.getItem('intserfin_leads') || '[]');
-      leads.unshift({
-        nombre:  f.nombre.value.trim(),
-        cedula:  f.cedula.value.trim(),
-        celular: f.celular.value.trim(),
-        perfil:  f.perfil.value,
-        fondo:   f.fondo.value,
-        monto:   f.monto.value,
-        archivos: selectedFiles.map(x => x.name),
-        fecha:   new Date().toISOString()
-      });
-      localStorage.setItem('intserfin_leads', JSON.stringify(leads.slice(0, 500)));
-    } catch(_){}
 
     const hasFiles = selectedFiles.length > 0;
 
