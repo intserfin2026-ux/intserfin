@@ -810,6 +810,23 @@ section.dark .sec-tag{color:var(--secondary-2)}
 .logo-card .lt{font-size:11px;color:var(--text-3);margin-top:-6px}
 .conv-note{text-align:center;margin-top:34px;font-size:14px;color:var(--text-3)}
 
+/* ═══════ CARTERA (beneficios) ═══════ */
+.cartera-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px;max-width:800px;margin-inline:auto}
+.cartera-card{background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm);transition:transform .28s var(--ease),box-shadow .28s var(--ease);position:relative;overflow:hidden}
+.cartera-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.cartera-card .cc-num{font-family:'Ubuntu',sans-serif;font-size:2.2rem;font-weight:700;line-height:1;background:var(--grad-cta);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.cartera-card h3{font-size:1.08rem;font-weight:600;color:var(--primary-ink);margin-bottom:4px}
+.cartera-card p{font-size:14px;color:var(--text-3)}
+.cartera-callouts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;max-width:800px;margin-inline:auto}
+.cartera-contra,.cartera-regla{border-radius:var(--radius);padding:20px 22px;font-size:14.5px;line-height:1.55}
+.cartera-contra{background:#fff4f4;border:1px solid #f5d6d6;color:#8a3a3a}
+.cartera-regla{background:#edf7ed;border:1px solid #c8e0c8;color:#2d6b2d}
+.cc-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:inline-block;padding:3px 10px;border-radius:99px;margin-bottom:8px}
+.cartera-contra .cc-label{background:#f5d6d6;color:#8a3a3a}
+.cartera-regla .cc-label{background:#c8e0c8;color:#2d6b2d}
+.cartera-cta{text-align:center;margin-top:32px}
+@media(max-width:640px){.cartera-grid{grid-template-columns:1fr}.cartera-callouts{grid-template-columns:1fr}}
+
 /* Convenios · Secretarías de Educación (grupos) */
 .conv-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px;align-items:start}
 .conv-group{
@@ -1645,15 +1662,55 @@ html.is-offline .offline-banner{display:flex}
       <h2 id="carteraTitle">Unificamos tus deudas en una <em>sola cuota</em></h2>
       <p>Trabajamos con las principales entidades financieras para liberar tu flujo mensual.</p>
     </div>
-    <div class="conv-grid">
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a1.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a2.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a3.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a4.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a5.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a6.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a7.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a8.jpeg" alt="" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+
+    <div class="cartera-grid reveal">
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">1</div>
+        <h3>1 sola cuota</h3>
+        <p>Unificas todas tus deudas en 1 pago mensual. Menos estrés.</p>
+      </article>
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">2</div>
+        <h3>Cuota más baja</h3>
+        <p>Plazo hasta 84 meses = pagas menos cada mes y te queda flujo.</p>
+      </article>
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">3</div>
+        <h3>Tasa más barata</h3>
+        <p>Cambias tarjetas 30-35% E.A. por libranza 21-28% E.A.</p>
+      </article>
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">4</div>
+        <h3>Descuento automático</h3>
+        <p>Te descuentan de nómina/pensión. Cero mora, cuidas tu historial.</p>
+      </article>
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">5</div>
+        <h3>Aprobación fácil</h3>
+        <p>Bancos como Ban100 dan "segunda oportunidad" a pensionados y estratos 1-2-3.</p>
+      </article>
+      <article class="cartera-card">
+        <div class="cc-num" aria-hidden="true">6</div>
+        <h3>Seguro incluido</h3>
+        <p>Si falleces o quedas incapacitado, el seguro paga la deuda.</p>
+      </article>
+    </div>
+
+    <div class="cartera-callouts reveal">
+      <div class="cartera-contra">
+        <span class="cc-label">Contra</span>
+        <p>Pagas menos mensual pero más intereses totales por alargar el plazo.</p>
+      </div>
+      <div class="cartera-regla">
+        <span class="cc-label">Regla</span>
+        <p>Te sirve si sales de deudas caras y te haces más libre. No si te endeudas más.</p>
+      </div>
+    </div>
+
+    <div class="cartera-cta reveal">
+      <a href="#estudio" class="btn btn-accent" data-open-study>¿Quieres que revise tu caso específico?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
