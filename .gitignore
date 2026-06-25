@@ -8,3 +8,4 @@ build/
 .git/
 uploads/*.pdf
 uploads/*.tmp
+.hostinger.env
