@@ -1290,14 +1290,16 @@ section.dark .sec-tag{color:var(--secondary-2)}
   min-height:60px;
 }
 .qa button .plus{
-  flex:none;font-size:24px;
-  color:var(--accent);
-  transition:transform .3s var(--ease);
-  display:inline-grid;place-items:center;
+  flex:none;
   width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;
+  color:var(--accent);
   background:var(--accent-soft);
+  transition:transform .35s var(--ease),background .25s var(--ease),color .25s var(--ease);
 }
-.qa.open button .plus{transform:rotate(45deg)}
+.qa button .plus svg{display:block;width:17px;height:17px}
+.qa button:hover .plus{background:var(--accent);color:#fff}
+.qa.open button .plus{transform:rotate(135deg);background:var(--accent);color:#fff}
 .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
 .qa .ans p{padding:0 24px 22px;font-size:15px;color:var(--text-3)}
 
@@ -1885,35 +1887,35 @@ html.is-offline .offline-banner{display:flex}
     </div>
     <div class="faq">
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Qué es un crédito de libranza? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Qué es un crédito de libranza? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>Es un crédito cuya cuota se descuenta directamente de tu pensión o nómina. Al estar respaldado por ese descuento, ofrece tasas más bajas y no requiere codeudor.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Intserfin presta el dinero? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Intserfin presta el dinero? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>No. Somos un canal de asesoría gratuita 100% digital. Te orientamos y te conectamos con las entidades financieras aliadas que realizan el desembolso, ayudándote a elegir la mejor opción.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Quiénes pueden solicitarlo? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Quiénes pueden solicitarlo? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>Pensionados de Colpensiones, FOPEP, CREMIL, CASUR y fondos privados, además de docentes activos y pensionados del Magisterio (FOMAG). Si tu pagaduría tiene convenio, puedes aplicar.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Cuánto se demora el proceso? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Cuánto se demora el proceso? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>El estudio inicial toma minutos y la respuesta promedio es de 24 horas. El desembolso depende de la entidad y tu perfil, pero te acompañamos hasta el final.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Tiene algún costo la asesoría? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Tiene algún costo la asesoría? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>No cobramos por asesorarte. El estudio de crédito es sin costo (0,0%). Solo asumes los conceptos propios del crédito que te explicamos con total transparencia antes de firmar.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Cuáles son los principales beneficios del crédito de libranza? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Cuáles son los principales beneficios del crédito de libranza? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p><b>Fácil y rápido:</b> Aprobación y desembolso ágil.</p><p><b>Montos flexibles:</b> Desde $500.000 hasta $100 millones, adaptándose a tu capacidad de endeudamiento.</p><p><b>Plazos amplios:</b> Tienes hasta 84 meses para pagar.</p><p><b>Tranquilidad:</b> La cuota es fija durante todo el crédito y el descuento se hace directo de tu nómina o pensión. No necesitas fiadores ni codeudores.</p><p><b>Abonos a capital:</b> Si realizas abonos extra, reduces automáticamente el plazo de tu crédito, manteniendo la misma cuota.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿A quiénes va dirigido este crédito? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿A quiénes va dirigido este crédito? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p>Está dirigido a empleados y pensionados (principalmente de estratos 1, 2 y 3), con condiciones inclusivas como:</p><p><b>Edad máxima alta:</b> Superior a la que ofrece la banca tradicional, con un fuerte enfoque en mayores de 50 años.</p><p><b>Fuerza pública:</b> Programas especiales para retirados de la Policía y Fuerzas Militares.</p><p><b>Segundas oportunidades:</b> Opciones de crédito para población que la banca convencional suele excluir.</p></div>
       </div>
       <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Cuáles son los requisitos básicos para solicitarlo? <span class="plus" aria-hidden="true">+</span></button>
+        <button type="button" aria-expanded="false">¿Cuáles son los requisitos básicos para solicitarlo? <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="ans"><p><b>Para Empleados:</b> Cédula ampliada al 150%, 2 últimos desprendibles de pago y certificación laboral.</p><p><b>Para Pensionados:</b> Cédula ampliada al 150%, desprendible de pensión y carné de sanidad.</p><p><em>Importante:</em> Este crédito solo aplica si tu empresa o entidad pagadora tiene un convenio activo con la entidad financiera. (Contamos con presencia en más de 1.000 municipios).</p></div>
       </div>
     </div>
