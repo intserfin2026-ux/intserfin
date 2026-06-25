@@ -749,6 +749,28 @@ section.dark .sec-tag{color:var(--secondary-2)}
 .benefit p{font-size:14.5px;color:var(--text-3)}
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   QUIÉNES SOMOS / MISIÓN / VISIÓN
+   ────────────────────────────────────────────────────────────────────────── */
+.nosotros-intro{max-width:760px;margin:0 auto 38px;text-align:center;font-size:1.06rem;color:var(--text-2);line-height:1.65}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto}
+.mv-card{
+  background:#fff;border:1px solid #dde4ee;border-radius:var(--radius);
+  padding:32px 30px;position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.mv-card::after{content:"";position:absolute;top:0;left:0;width:0;height:3px;background:var(--grad-cta);transition:width .4s var(--ease)}
+.mv-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:rgba(23,105,166,.4)}
+.mv-card:hover::after{width:100%}
+.mv-card .ic{
+  width:54px;height:54px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(23,105,166,.18),rgba(23,105,166,.04));color:var(--secondary-deep);
+}
+.mv-card:nth-child(2) .ic{color:var(--accent-deep)}
+.mv-card h3{font-size:1.25rem;color:var(--primary-ink);margin-bottom:10px;font-weight:700}
+.mv-card p{font-size:15px;color:var(--text-3);line-height:1.6}
+@media(max-width:760px){.mv-grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    STEPS
    ────────────────────────────────────────────────────────────────────────── */
 .steps{
@@ -793,7 +815,7 @@ section.dark .sec-tag{color:var(--secondary-2)}
 @media(max-width:450px){.conv-grid{grid-template-columns:1fr 1fr}}
 .logo-card{
   flex:0 1 180px;
-  background:#fff;border:1px solid #dde4ee;border-radius:var(--radius);
+  background:#ECEDF0;border:1px solid #d6dae3;border-radius:var(--radius);
   padding:22px 14px 16px;
   display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;
   transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease);
@@ -812,7 +834,7 @@ section.dark .sec-tag{color:var(--secondary-2)}
 
 /* ═══════ CARTERA (beneficios) ═══════ */
 .cartera-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px;max-width:800px;margin-inline:auto}
-.cartera-card{background:#fff;border:1px solid var(--cream-2);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm);transition:transform .28s var(--ease),box-shadow .28s var(--ease);position:relative;overflow:hidden}
+.cartera-card{background:#E9EAED;border:1px solid #DBDDE2;border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm);transition:transform .28s var(--ease),box-shadow .28s var(--ease);position:relative;overflow:hidden}
 .cartera-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .cartera-card .cc-num{font-family:'Ubuntu',sans-serif;font-size:2.2rem;font-weight:700;line-height:1;background:var(--grad-cta);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
 .cartera-card h3{font-size:1.08rem;font-weight:600;color:var(--primary-ink);margin-bottom:4px}
@@ -1026,6 +1048,8 @@ section.dark .sec-tag{color:var(--secondary-2)}
   transition:box-shadow .3s var(--ease),transform .3s var(--ease);
 }
 .ig-post img{display:block;width:100%;height:auto;transition:transform .6s var(--ease)}
+.ig-post--video{padding:0;background:#000;line-height:0}
+.ig-vid{display:block;width:100%;height:auto;border-radius:inherit}
 .ig-post:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
 .ig-post:hover img{transform:scale(1.05)}
 .ig-ov{
@@ -1144,6 +1168,16 @@ section.dark .sec-tag{color:var(--secondary-2)}
 .promo-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px}
 .promo-modal[hidden]{display:none}
 .promo-modal__backdrop{position:absolute;inset:0;background:rgba(18,36,54,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:pmFade .3s var(--ease)}
+
+/* Modal de video de bienvenida */
+.video-card{position:relative;z-index:2;width:min(400px,92vw);max-height:90dvh;border-radius:22px;overflow:hidden;background:#000;box-shadow:0 36px 90px -24px rgba(8,18,30,.6);animation:pmFade .3s var(--ease)}
+.welcome-vid{display:block;width:100%;height:auto;max-height:90dvh;object-fit:contain;background:#000}
+.video-card .survey-card__close{position:absolute;top:10px;right:10px;z-index:3;background:rgba(0,0,0,.5);color:#fff}
+.video-card .survey-card__close:hover{background:rgba(0,0,0,.72)}
+.vid-unmute{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(0,0,0,.62);color:#fff;border:none;border-radius:99px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;z-index:3;display:inline-flex;align-items:center;gap:7px}
+.vid-unmute:hover{background:rgba(0,0,0,.8)}
+.vid-unmute[hidden]{display:none}
+@media(max-width:560px){.video-card{width:100%;max-height:94dvh;border-radius:22px 22px 0 0}}
 
 .survey-card{
   position:relative;z-index:2;
@@ -1483,6 +1517,7 @@ html.is-offline .offline-banner{display:flex}
            alt="Intserfin — Especialistas en Libranza" fetchpriority="high" decoding="sync" />
     </a>
     <nav class="nav-links" aria-label="Principal">
+      <a href="index.html#nosotros" >Nosotros</a>
       <a href="index.html#beneficios" >Beneficios</a>
       <a href="index.html#proceso" >Cómo funciona</a>
       <a href="convenios.html" >Convenios</a>
@@ -1500,6 +1535,7 @@ html.is-offline .offline-banner{display:flex}
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú">
+  <a href="index.html#nosotros" data-close>Nosotros</a>
   <a href="index.html#beneficios" data-close>Beneficios</a>
   <a href="index.html#proceso" data-close>Cómo funciona</a>
   <a href="convenios.html" data-close>Convenios</a>
@@ -1595,6 +1631,29 @@ html.is-offline .offline-banner{display:flex}
 </section>
 
 
+<section class="block" id="nosotros" aria-labelledby="nosTitle" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">¿Quiénes somos?</span>
+      <h2 id="nosTitle">Especialistas en <em>libranza</em>, de tu lado</h2>
+    </div>
+    <p class="nosotros-intro reveal">En Intserfin somos un equipo de especialistas en crédito de libranza dedicados a acompañar a docentes, pensionados y empleados de toda Colombia a tomar decisiones financieras claras y seguras. Como canal de asesoría 100% digital, conectamos a cada persona con las entidades financieras aliadas que mejor se ajustan a su perfil, siempre con transparencia, cobertura nacional y un trato cercano y humano.</p>
+    <div class="mv-grid">
+      <article class="mv-card reveal">
+        <div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <h3>Misión</h3>
+        <p>Facilitar el acceso al crédito de libranza a docentes, pensionados y empleados mediante una asesoría experta, transparente y cercana, ayudándoles a mejorar su bienestar financiero con soluciones a la medida de sus necesidades.</p>
+      </article>
+      <article class="mv-card reveal">
+        <div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Visión</h3>
+        <p>Ser la firma de asesoría en libranza más confiable de Colombia, reconocida por su acompañamiento humano, su cobertura nacional y su compromiso permanente con la tranquilidad financiera de cada cliente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
 <section class="block" id="beneficios" aria-labelledby="benTitle">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -1657,7 +1716,22 @@ html.is-offline .offline-banner{display:flex}
 
 <section class="block" aria-labelledby="carteraTitle" style="background:var(--cream)">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="conv-pag reveal" style="margin-top:0;padding-top:0;border-top:none">
+      <p class="conv-pagtitle">Compramos tu cartera con las siguientes entidades:</p>
+      <p class="conv-pagsub">Trabajamos con las principales entidades para ayudarte a unificar tus deudas.</p>
+      <div class="conv-grid" style="grid-template-columns:repeat(4,1fr)">
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a1.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a2.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a3.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a4.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a5.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a6.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a7.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a8.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin:28px auto 24px">
       <span class="sec-tag">Compra de cartera</span>
       <h2 id="carteraTitle">Unificamos tus deudas en una <em>sola cuota</em></h2>
       <p>Trabajamos con las principales entidades financieras para liberar tu flujo mensual.</p>
@@ -1666,109 +1740,34 @@ html.is-offline .offline-banner{display:flex}
     <div class="cartera-grid reveal">
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">1</div>
-        <h3>1 sola cuota</h3>
-        <p>Unificas todas tus deudas en 1 pago mensual. Menos estrés.</p>
+        <h3>Condiciones que no se mueven</h3>
+        <p>Tasa fija y cuota fija durante todo el crédito, con plazos flexibles que se adaptan a tu bolsillo. Sabes exactamente cuánto pagas, sin sorpresas.</p>
       </article>
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">2</div>
-        <h3>Cuota más baja</h3>
-        <p>Plazo hasta 84 meses = pagas menos cada mes y te queda flujo.</p>
+        <h3>Plazos a tu medida</h3>
+        <p>Tú decides el ritmo: plazos altamente flexibles desde 6 hasta 156 meses para que la cuota se ajuste a tu flujo mensual.</p>
       </article>
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">3</div>
-        <h3>Tasa más barata</h3>
-        <p>Cambias tarjetas 30-35% E.A. por libranza 21-28% E.A.</p>
+        <h3>Las tasas más flexibles</h3>
+        <p>Accede a campañas especiales con las tasas de interés más bajas del mercado. Tu tasa final queda sujeta a tu historial crediticio.</p>
       </article>
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">4</div>
-        <h3>Descuento automático</h3>
-        <p>Te descuentan de nómina/pensión. Cero mora, cuidas tu historial.</p>
+        <h3>Preaprobado en 48 horas</h3>
+        <p>Nuestro sistema de preaprobado rápido te da respuesta en tan solo 48 horas. Menos espera, más tranquilidad.</p>
       </article>
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">5</div>
-        <h3>Aprobación fácil</h3>
-        <p>Bancos como Ban100 dan "segunda oportunidad" a pensionados y estratos 1-2-3.</p>
+        <h3>100% digital y nacional</h3>
+        <p>Trámite fácil y ágil, completamente digital y sin filas. Con cobertura en todo el territorio nacional, te atendemos estés donde estés.</p>
       </article>
       <article class="cartera-card">
         <div class="cc-num" aria-hidden="true">6</div>
-        <h3>Seguro incluido</h3>
-        <p>Si falleces o quedas incapacitado, el seguro paga la deuda.</p>
+        <h3>Respaldo con Seguro Deudor</h3>
+        <p>Tu crédito incluye Seguro Deudor: ante un imprevisto, tu familia queda protegida y la deuda no se convierte en una carga.</p>
       </article>
-    </div>
-
-    <div class="conv-pag" style="margin-top:40px;border-top:1px solid var(--cream-2);padding-top:36px">
-      <p class="conv-pagtitle">Compramos tu cartera con las siguientes entidades:</p>
-      <p class="conv-pagsub">Trabajamos con las principales entidades para ayudarte a unificar tus deudas.</p>
-      <div class="conv-grid" style="grid-template-columns:repeat(4,1fr)">
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a1.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a2.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a3.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a4.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a5.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a6.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a7.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a8.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      </div>
-    </div>
-
-    <div class="conv-pag" style="margin-top:40px;border-top:1px solid var(--cream-2);padding-top:36px">
-      <p class="conv-pagtitle">Compramos tu cartera con las siguientes entidades:</p>
-      <p class="conv-pagsub">Trabajamos con las principales entidades para ayudarte a unificar tus deudas.</p>
-      <div class="conv-grid" style="grid-template-columns:repeat(4,1fr)">
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a1.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a2.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a3.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a4.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a5.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a6.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a7.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a8.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      </div>
-    </div>
-
-    <div class="conv-pag" style="margin-top:40px;border-top:1px solid var(--cream-2);padding-top:36px">
-      <p class="conv-pagtitle">Compramos tu cartera con las siguientes entidades:</p>
-      <p class="conv-pagsub">Trabajamos con las principales entidades para ayudarte a unificar tus deudas.</p>
-      <div class="conv-grid" style="grid-template-columns:repeat(4,1fr)">
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a1.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a2.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a3.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a4.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a5.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a6.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a7.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-        <article class="logo-card"><div class="lv"><img src="assets/logoscartera/a8.jpeg" alt="Entidad aliada" loading="lazy" /></div><span class="ln">Entidad aliada</span><span class="lt">Compra de cartera</span></article>
-      </div>
-    </div>
-
-    <div class="cartera-cta reveal">
-      <a href="#estudio" class="btn btn-accent" data-open-study>¿Quieres que revise tu caso específico?
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-      <div class="cartera-contra">
-        <span class="cc-label">Contra</span>
-        <p>Pagas menos mensual pero más intereses totales por alargar el plazo.</p>
-      </div>
-      <div class="cartera-regla">
-        <span class="cc-label">Regla</span>
-        <p>Te sirve si sales de deudas caras y te haces más libre. No si te endeudas más.</p>
-      </div>
-    </div>
-
-    <div class="cartera-cta reveal">
-      <a href="#estudio" class="btn btn-accent" data-open-study>¿Quieres que revise tu caso específico?
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-      <div class="cartera-contra">
-        <span class="cc-label">Contra</span>
-        <p>Pagas menos mensual pero más intereses totales por alargar el plazo.</p>
-      </div>
-      <div class="cartera-regla">
-        <span class="cc-label">Regla</span>
-        <p>Te sirve si sales de deudas caras y te haces más libre. No si te endeudas más.</p>
-      </div>
     </div>
 
     <div class="cartera-cta reveal">
@@ -1805,19 +1804,7 @@ html.is-offline .offline-banner{display:flex}
               <p>"Si buscas una asesoría confiable y con servicio de calidad, es la mejor opción. Quedé muy satisfecho con todo el proceso."</p>
               <div class="who"><img class="av-photo" src="assets/carlos.webp" alt="" width="52" height="52" loading="lazy" /><div><b>Carlos Suárez</b><span>Pensionado CREMIL · Cali</span></div></div>
             </article>
-      <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Cuáles son los principales beneficios del crédito de libranza? <span class="plus" aria-hidden="true">+</span></button>
-        <div class="ans"><p><b>Fácil y rápido:</b> Aprobación y desembolso ágil.</p><p><b>Montos flexibles:</b> Desde $500.000 hasta $100 millones, adaptándose a tu capacidad de endeudamiento.</p><p><b>Plazos amplios:</b> Tienes hasta 84 meses para pagar.</p><p><b>Tranquilidad:</b> La cuota es fija durante todo el crédito y el descuento se hace directo de tu nómina o pensión. No necesitas fiadores ni codeudores.</p><p><b>Abonos a capital:</b> Si realizas abonos extra, reduces automáticamente el plazo de tu crédito, manteniendo la misma cuota.</p></div>
-      </div>
-      <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿A quiénes va dirigido este crédito? <span class="plus" aria-hidden="true">+</span></button>
-        <div class="ans"><p>Ban100 se especializa en empleados y pensionados (principalmente de estratos 1, 2 y 3). Ofrece condiciones inclusivas como:</p><p><b>Edad máxima alta:</b> Superior a la que ofrece la banca tradicional, con un fuerte enfoque en mayores de 50 años.</p><p><b>Fuerza pública:</b> Programas especiales para retirados de la Policía y Fuerzas Militares.</p><p><b>Segundas oportunidades:</b> Opciones de crédito para población que la banca convencional suele excluir.</p></div>
-      </div>
-      <div class="qa reveal">
-        <button type="button" aria-expanded="false">¿Cuáles son los requisitos básicos para solicitarlo? <span class="plus" aria-hidden="true">+</span></button>
-        <div class="ans"><p><b>Para Empleados:</b> Cédula ampliada al 150%, 2 últimos desprendibles de pago y certificación laboral.</p><p><b>Para Pensionados:</b> Cédula ampliada al 150%, desprendible de pensión y carné de sanidad.</p><p><em>Importante:</em> Este crédito solo aplica si tu empresa o entidad pagadora tiene un convenio activo con Ban100. (Ban100 tiene presencia en más de 1.000 municipios).</p></div>
-      </div>
-    </div>
+          </div>
         <button class="tst-arrow prev" type="button" id="tstPrev" aria-label="Testimonio anterior">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
@@ -1839,6 +1826,18 @@ html.is-offline .offline-banner{display:flex}
       <p>Convenios, beneficios y novedades de tu crédito de libranza, directo desde nuestras redes.</p>
     </div>
     <div class="ig-grid reveal">
+      <div class="ig-post ig-post--video">
+        <video class="ig-vid" controls muted loop playsinline preload="metadata" src="assets/ig/ldng.mp4" aria-label="Video Intserfin — crédito de libranza"></video>
+      </div>
+      <div class="ig-post ig-post--video">
+        <video class="ig-vid" controls muted loop playsinline preload="metadata" src="assets/ig/vd1.mp4" aria-label="Video Intserfin — crédito de libranza"></video>
+      </div>
+      <div class="ig-post ig-post--video">
+        <video class="ig-vid" controls muted loop playsinline preload="metadata" src="assets/ig/WhatsApp%20Video%202026-06-04%20at%206.12.45%20PM.mp4" aria-label="Video Intserfin — crédito de libranza"></video>
+      </div>
+      <div class="ig-post ig-post--video">
+        <video class="ig-vid" controls muted loop playsinline preload="metadata" src="assets/ig/WhatsApp%20Video%202026-06-04%20at%206.12.46%20PM.mp4" aria-label="Video Intserfin — crédito de libranza"></video>
+      </div>
       <a class="ig-post" href="https://www.instagram.com/_intserfin" target="_blank" rel="noopener" aria-label="Pensionado Caja de Retiro CREMIL — ver en Instagram">
         <img src="assets/ig/post-cremil.webp" width="700" height="875" loading="lazy" alt="Publicación: crédito de libranza para pensionados de la Caja de Retiro CREMIL" />
         <span class="ig-ov"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.14 0-3.51.01-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.51 4.01 15.14 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86Zm5.13-3.2a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15Z"/></svg>Ver en Instagram</span>
@@ -1905,6 +1904,18 @@ html.is-offline .offline-banner{display:flex}
         <button type="button" aria-expanded="false">¿Tiene algún costo la asesoría? <span class="plus" aria-hidden="true">+</span></button>
         <div class="ans"><p>No cobramos por asesorarte. El estudio de crédito es sin costo (0,0%). Solo asumes los conceptos propios del crédito que te explicamos con total transparencia antes de firmar.</p></div>
       </div>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">¿Cuáles son los principales beneficios del crédito de libranza? <span class="plus" aria-hidden="true">+</span></button>
+        <div class="ans"><p><b>Fácil y rápido:</b> Aprobación y desembolso ágil.</p><p><b>Montos flexibles:</b> Desde $500.000 hasta $100 millones, adaptándose a tu capacidad de endeudamiento.</p><p><b>Plazos amplios:</b> Tienes hasta 84 meses para pagar.</p><p><b>Tranquilidad:</b> La cuota es fija durante todo el crédito y el descuento se hace directo de tu nómina o pensión. No necesitas fiadores ni codeudores.</p><p><b>Abonos a capital:</b> Si realizas abonos extra, reduces automáticamente el plazo de tu crédito, manteniendo la misma cuota.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">¿A quiénes va dirigido este crédito? <span class="plus" aria-hidden="true">+</span></button>
+        <div class="ans"><p>Está dirigido a empleados y pensionados (principalmente de estratos 1, 2 y 3), con condiciones inclusivas como:</p><p><b>Edad máxima alta:</b> Superior a la que ofrece la banca tradicional, con un fuerte enfoque en mayores de 50 años.</p><p><b>Fuerza pública:</b> Programas especiales para retirados de la Policía y Fuerzas Militares.</p><p><b>Segundas oportunidades:</b> Opciones de crédito para población que la banca convencional suele excluir.</p></div>
+      </div>
+      <div class="qa reveal">
+        <button type="button" aria-expanded="false">¿Cuáles son los requisitos básicos para solicitarlo? <span class="plus" aria-hidden="true">+</span></button>
+        <div class="ans"><p><b>Para Empleados:</b> Cédula ampliada al 150%, 2 últimos desprendibles de pago y certificación laboral.</p><p><b>Para Pensionados:</b> Cédula ampliada al 150%, desprendible de pensión y carné de sanidad.</p><p><em>Importante:</em> Este crédito solo aplica si tu empresa o entidad pagadora tiene un convenio activo con la entidad financiera. (Contamos con presencia en más de 1.000 municipios).</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1967,7 +1978,7 @@ html.is-offline .offline-banner{display:flex}
         <ul>
           <li><a href="https://wa.me/573114880537" target="_blank" rel="noopener noreferrer">WhatsApp: 311 488 0537</a></li>
           <li><a href="tel:+573114880537">Tel: 311 488 0537</a></li>
-          <li><a href="mailto:hola@intserfin.com.co">hola@intserfin.com.co</a></li>
+          <li><a href="mailto:comercialibranza@intserfin.com.co">comercialibranza@intserfin.com.co</a></li>
           <li><a href="https://www.instagram.com/_intserfin" target="_blank" rel="noopener noreferrer">Instagram: @_intserfin</a></li>
           <li><a href="https://www.facebook.com/share/1BGegeBuJ3/" target="_blank" rel="noopener noreferrer">Facebook: /Intserfin</a></li>
         </ul>
@@ -1994,11 +2005,24 @@ html.is-offline .offline-banner{display:flex}
   </button>
 </div>
 
+<!-- ════════ MODAL VIDEO DE BIENVENIDA (ldng) ════════ -->
+<div class="promo-modal video-modal" id="welcomeVideoModal" role="dialog" aria-modal="true" aria-label="Video de bienvenida" hidden>
+  <div class="promo-modal__backdrop" data-close-video></div>
+  <div class="video-card">
+    <button class="survey-card__close" type="button" aria-label="Cerrar" data-close-video><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <video id="welcomeVideo" class="welcome-vid" src="assets/ig/ldng.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <button type="button" class="vid-unmute" id="vidUnmute" aria-label="Activar sonido">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      Toca para activar sonido
+    </button>
+  </div>
+</div>
+
 <!-- ════════ MODAL ESTUDIO (formulario completo) ════════ -->
 <div class="promo-modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="studyModalTitle" hidden>
   <div class="promo-modal__backdrop" data-close></div>
   <div class="survey-card study-modal" id="estudio">
-    <button class="survey-card__close" type="button" aria-label="Cerrar" data-close>&times;</button>
+    <button class="survey-card__close" type="button" aria-label="Cerrar" data-close><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
 
     <div class="fc-head">
       <span class="fc-badge">Estudio sin costo</span>
@@ -2650,8 +2674,39 @@ html.is-offline .offline-banner{display:flex}
 
     modal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) close(); });
+  })();
 
-    setTimeout(open, 900);
+  // ─── Modal de video de bienvenida (ldng) al abrir la plataforma ────
+  (function(){
+    const modal = $('#welcomeVideoModal');
+    if (!modal) return;
+    const video = $('#welcomeVideo');
+    const unmuteBtn = $('#vidUnmute');
+
+    function open(){
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (video) { try { video.play(); } catch(e){} }
+    }
+    function close(){
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (video) video.pause();
+    }
+
+    modal.querySelectorAll('[data-close-video]').forEach(function(el){ el.addEventListener('click', close); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) close(); });
+
+    if (unmuteBtn && video){
+      unmuteBtn.addEventListener('click', function(){
+        video.muted = false;
+        video.volume = 1;
+        try { video.play(); } catch(e){}
+        unmuteBtn.hidden = true;
+      });
+    }
+
+    setTimeout(open, 500);
   })();
 
   // Re-bind triggers después de definir el modal (por si openStudyModal aún no existía)
